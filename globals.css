@@ -1,0 +1,82 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --background: #000000;
+  --foreground: #ffffff;
+  --card: #111111;
+  --card-foreground: #ffffff;
+  --popover: #111111;
+  --popover-foreground: #ffffff;
+  --primary: #D4AF37; /* Gold */
+  --primary-foreground: #000000;
+  --secondary: #C0C0C0; /* Silver */
+  --secondary-foreground: #000000;
+  --muted: #1a1a1a;
+  --muted-foreground: #a0a0a0;
+  --accent: #D4AF37;
+  --accent-foreground: #000000;
+  --destructive: #7f1d1d;
+  --destructive-foreground: #ffffff;
+  --border: #262626;
+  --input: #262626;
+  --ring: #D4AF37;
+  --radius: 0.75rem;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+  --color-accent: var(--accent);
+  --color-border: var(--border);
+  --radius-lg: var(--radius);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    /* Luxury Black & Gold Gradient */
+    background: radial-gradient(circle at top left, #1a1a1a 0%, #000000 100%);
+    background-attachment: fixed;
+    color: #ffffff;
+  }
+
+  html {
+    overflow-x: auto !important;
+    overflow-y: auto !important;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    overflow-x: auto !important;
+    overflow-y: auto !important;
+    min-width: 100vw;
+    width: max-content;
+  }
+
+  /* Luxury Scrollbar - Gold Theme */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #000000;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #D4AF37;
+    border-radius: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #b8962e;
+  }
+}
