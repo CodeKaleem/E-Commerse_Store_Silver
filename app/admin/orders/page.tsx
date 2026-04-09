@@ -85,9 +85,9 @@ export default function AdminOrdersPage() {
           </button>
         </div>
 
-        <div className="flex gap-8">
+        <div className="flex flex-col lg:flex-row gap-8">
           {/* List */}
-          <div className="w-1/3 bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden shrink-0 h-[75vh] flex flex-col">
+          <div className="w-full lg:w-1/3 bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden shrink-0 h-[40vh] lg:h-[75vh] flex flex-col">
             <div className="p-4 border-b border-slate-100 bg-slate-50 font-bold text-xs uppercase tracking-widest text-slate-500">Orders List</div>
             <div className="overflow-y-auto flex-2 p-2 space-y-2">
               {loading ? <p className="p-4 text-sm text-slate-500 text-center">Loading...</p> : 
@@ -119,7 +119,7 @@ export default function AdminOrdersPage() {
           </div>
 
           {/* Detailed View */}
-          <div className="flex-1 bg-white rounded-2xl shadow-sm border border-slate-200 p-8 h-[75vh] overflow-y-auto">
+          <div className="flex-1 bg-white rounded-2xl shadow-sm border border-slate-200 p-4 md:p-8 min-h-[50vh] lg:h-[75vh] overflow-y-auto">
              {selectedOrder ? (
                <div>
                  <div className="flex justify-between items-start mb-6 border-b pb-6">
@@ -143,7 +143,7 @@ export default function AdminOrdersPage() {
                     </div>
                  </div>
 
-                 <div className="grid grid-cols-2 gap-8 mb-8">
+                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
                     <div className="space-y-4 text-sm">
                       <h3 className="font-bold uppercase text-xs tracking-widest text-[#D4AF37]">Customer Details</h3>
                       <p className="flex items-center gap-3 text-slate-700"><User size={16} className="text-slate-400"/> {selectedOrder.customer_name}</p>

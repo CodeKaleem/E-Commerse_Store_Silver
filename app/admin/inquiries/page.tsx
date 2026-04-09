@@ -78,13 +78,13 @@ export default function AdminInquiriesPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#f3f4f6] text-black font-sans p-8">
+    <div className="min-h-screen bg-[#f3f4f6] text-black font-sans p-4 md:p-8">
       <div className="max-w-6xl mx-auto">
         
         {/* Header */}
-        <div className="flex justify-between items-center mb-8">
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
           <div>
-            <h1 className="text-3xl font-bold tracking-tighter uppercase text-slate-800">Inquiries Dashboard</h1>
+            <h1 className="text-2xl md:text-3xl font-bold tracking-tighter uppercase text-slate-800">Inquiries Dashboard</h1>
             <p className="text-slate-500 text-sm mt-1">Manage and reply to customer service requests directly.</p>
           </div>
           <button 
@@ -96,10 +96,10 @@ export default function AdminInquiriesPage() {
         </div>
 
         {/* Content */}
-        <div className="flex gap-8">
+        <div className="flex flex-col lg:flex-row gap-8">
           
           {/* List */}
-          <div className="w-1/2 bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden shrink-0 h-[70vh] flex flex-col">
+          <div className="w-full lg:w-1/2 bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden shrink-0 h-[40vh] lg:h-[70vh] flex flex-col">
             <div className="p-4 border-b border-slate-100 bg-slate-50 font-bold text-xs uppercase tracking-widest text-slate-500">
                Recent Inquiries
             </div>
@@ -136,7 +136,7 @@ export default function AdminInquiriesPage() {
           </div>
 
           {/* Details / Reply Form */}
-          <div className="w-1/2 bg-white rounded-2xl shadow-sm border border-slate-200 p-6 h-[70vh] overflow-y-auto">
+          <div className="w-full lg:w-1/2 bg-white rounded-2xl shadow-sm border border-slate-200 p-4 md:p-6 min-h-[40vh] lg:h-[70vh] overflow-y-auto">
              {selectedInquiry ? (
                <div>
                   <h2 className="text-2xl font-bold mb-1">{selectedInquiry.service_type}</h2>

@@ -48,11 +48,16 @@ export default function PinterestMasonry() {
   useEffect(() => {
     const w = scrollerRef.current?.clientWidth ?? vw;
     if (!w) return;
-    const maxCols = Math.max(
-      2,
-      Math.min(8, Math.floor((w + GAP_X) / STRIDE_X))
-    );
-    setRealCols(maxCols);
+    
+    // Allow 1 column on small mobile, cap at 8 on large screens
+    let calculatedCols = Math.floor((w + GAP_X) / STRIDE_X);
+    if (w < 480) {
+      calculatedCols = Math.max(1, calculatedCols);
+    } else {
+      calculatedCols = Math.max(2, calculatedCols);
+    }
+    
+    setRealCols(Math.min(calculatedCols, 8));
   }, [vw]);
 
   // Optimized column transition to prevent lag

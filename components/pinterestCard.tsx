@@ -91,7 +91,7 @@ const PinterestCard = memo(function PinterestCard({
       {/* Add To Cart BTN */}
       <button 
         onClick={handleAddToCart}
-        className="absolute top-4 right-4 z-20 bg-white/90 text-black p-3 rounded-full opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all hover:bg-[#D4AF37] hover:text-white shadow-xl hover:scale-110 active:scale-95"
+        className="absolute top-4 right-4 z-20 bg-white/95 text-black p-3 rounded-full shadow-xl transition-all hover:bg-[#D4AF37] hover:text-white md:opacity-0 md:translate-y-2 md:group-hover:opacity-100 md:group-hover:translate-y-0 hover:scale-110 active:scale-95"
       >
         <ShoppingCart size={16} className="pointer-events-none" />
       </button>

@@ -78,9 +78,9 @@ export default function Navbar() {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50">
       {/* Mobile Navbar */}
-      <div className="flex lg:hidden bg-white w-full px-4 py-3 shadow-lg border-b justify-between items-center">
-        <Link href="/" className="flex flex-col items-start translate-y-1">
-          <span className="text-xl font-bold tracking-tighter text-black leading-none">{logoText}</span>
+      <div className="flex lg:hidden bg-black/80 backdrop-blur-xl w-full px-6 py-4 shadow-[0_4px_30px_rgba(0,0,0,0.5)] border-b border-white/5 justify-between items-center">
+        <Link href="/" className="flex flex-col items-start">
+          <span className="text-xl font-bold tracking-tighter text-white leading-none">{logoText}</span>
         </Link>
 
         <div className="flex gap-2 items-center">

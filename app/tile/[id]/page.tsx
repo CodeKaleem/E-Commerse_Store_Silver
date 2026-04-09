@@ -92,7 +92,7 @@ export default async function TilePage({
                 )}
               </div>
               <div className="space-y-2">
-                <h1 className="text-6xl md:text-8xl font-bold text-white leading-none tracking-tighter">
+                <h1 className="text-4xl sm:text-6xl md:text-8xl font-bold text-white leading-none tracking-tighter">
                   {product.title}
                 </h1>
               </div>

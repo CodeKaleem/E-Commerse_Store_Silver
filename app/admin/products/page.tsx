@@ -36,7 +36,7 @@ export default function AdminDashboard() {
   }
 
   return (
-    <div className="min-h-screen bg-black text-white p-8 bg-[radial-gradient(circle_at_top_right,#111,#000)]">
+    <div className="min-h-screen bg-black text-white p-4 md:p-8 bg-[radial-gradient(circle_at_top_right,#111,#000)]">
       <div className="max-w-6xl mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-12 gap-6">
           <div>
@@ -63,7 +63,8 @@ export default function AdminDashboard() {
           </div>
         ) : (
           <div className="bg-[#0a0a0a] rounded-3xl border border-white/5 overflow-hidden shadow-2xl">
-            <div className="overflow-x-auto">
+            {/* Desktop Table */}
+            <div className="hidden md:block overflow-x-auto">
               <table className="w-full text-left">
                 <thead className="border-b border-white/5 bg-white/[0.02]">
                   <tr>
@@ -114,12 +115,44 @@ export default function AdminDashboard() {
                   ))}
                 </tbody>
               </table>
-              {products.length === 0 && (
-                <div className="py-32 text-center">
-                  <p className="text-slate-500 text-sm font-medium tracking-widest uppercase">The vault is currently empty.</p>
-                </div>
-              )}
             </div>
+
+            {/* Mobile List View */}
+            <div className="block md:hidden divide-y divide-white/5">
+              {products.map((p) => (
+                <div key={p.id} className="p-6 space-y-4">
+                  <div className="flex items-center gap-4">
+                    <div className="w-20 h-20 rounded-xl overflow-hidden border border-white/10">
+                      <img src={p.image_url} alt={p.title} className="w-full h-full object-cover" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="font-bold text-white text-lg truncate">{p.title}</p>
+                      <p className="text-[10px] text-[#D4AF37] uppercase tracking-widest font-bold">{p.category}</p>
+                      <p className="font-serif text-xl mt-1">${p.price}</p>
+                    </div>
+                  </div>
+                  <div className="flex justify-between items-center bg-white/[0.02] p-2 rounded-xl border border-white/5">
+                    <p className="text-[9px] text-slate-600 uppercase tracking-tighter pl-2">REF: {p.id.slice(0, 8)}</p>
+                    <div className="flex gap-1">
+                      <Link href={`/admin/products/${p.id}/edit`}>
+                        <Button variant="ghost" size="icon" className="text-slate-400">
+                          <Edit size={16} />
+                        </Button>
+                      </Link>
+                      <Button variant="ghost" size="icon" onClick={() => deleteProduct(p.id)} className="text-slate-500 hover:text-red-500">
+                        <Trash2 size={16} />
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+            
+            {products.length === 0 && (
+              <div className="py-20 text-center">
+                <p className="text-slate-500 text-sm font-medium tracking-widest uppercase">The vault is currently empty.</p>
+              </div>
+            )}
           </div>
         )}
       </div>
