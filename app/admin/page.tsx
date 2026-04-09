@@ -74,9 +74,9 @@ export default function AdminDashboardOverview() {
   }
 
   return (
-    <div className="p-8 max-w-7xl mx-auto">
-      <div className="mb-10">
-        <h1 className="text-3xl font-bold uppercase tracking-tighter mb-2">Executive Overview</h1>
+    <div className="p-4 md:p-8 max-w-7xl mx-auto">
+      <div className="mb-8 md:mb-10">
+        <h1 className="text-2xl md:text-3xl font-bold uppercase tracking-tighter mb-2">Executive Overview</h1>
         <p className="text-slate-500 uppercase tracking-widest text-[10px] font-bold">Laraib Silver's Business Analytics</p>
       </div>
 

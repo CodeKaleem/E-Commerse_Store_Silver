@@ -3,7 +3,9 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet";
-import { Menu, Info, ShoppingBag, Diamond, Sparkles, Heart, Mail, Rocket } from "lucide-react";
+import { Menu, Info, Diamond, Sparkles, Heart, Gem, Mail, ShoppingCart } from "lucide-react";
+import { useCartStore } from "@/lib/store";
+import { useEffect, useState } from "react";
 
 interface Props {
   isOpen: boolean;
@@ -11,11 +13,15 @@ interface Props {
 }
 
 export default function MobileMenu({ isOpen, onOpenChange }: Props) {
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+  const cartCount = useCartStore((state) => state.getItemCount());
+
   const menuItems = [
     { title: "Rings", icon: <Diamond size={18} />, href: "/?cat=Rings" },
     { title: "Necklaces", icon: <Sparkles size={18} />, href: "/?cat=Necklaces" },
     { title: "Earrings", icon: <Heart size={18} />, href: "/?cat=Earrings" },
-    { title: "Bracelets", icon: <ShoppingBag size={18} />, href: "/?cat=Bracelets" },
+    { title: "Bracelets", icon: <Gem size={18} />, href: "/?cat=Bracelets" },
     { title: "Our Story", icon: <Info size={18} />, href: "/about" },
     { title: "Contact", icon: <Mail size={18} />, href: "/contact" },
   ];
@@ -23,8 +29,13 @@ export default function MobileMenu({ isOpen, onOpenChange }: Props) {
   return (
     <Sheet open={isOpen} onOpenChange={onOpenChange}>
       <SheetTrigger asChild>
-        <Button variant="ghost" size="icon" className="text-[#D4AF37] hover:bg-[#D4AF37]/10">
+        <Button variant="ghost" size="icon" className="text-[#D4AF37] hover:bg-[#D4AF37]/10 relative">
           <Menu className="h-7 w-7" />
+          {mounted && cartCount > 0 && (
+            <span className="absolute -top-1 -right-1 bg-[#D4AF37] text-black text-[9px] font-black w-4 h-4 rounded-full flex items-center justify-center">
+              {cartCount}
+            </span>
+          )}
         </Button>
       </SheetTrigger>
       <SheetContent side="right" className="w-80 p-0 bg-black border-l border-[#D4AF37]/20 text-white">
@@ -49,9 +60,10 @@ export default function MobileMenu({ isOpen, onOpenChange }: Props) {
           </ul>
 
           <div className="mt-10 pt-8 border-t border-white/10">
-            <Link href="/shop" onClick={() => onOpenChange(false)}>
-              <Button className="w-full h-16 bg-[#D4AF37] text-black font-bold text-lg tracking-[0.2em] rounded-2xl hover:bg-white transition-all shadow-[0_10px_30px_rgba(212,175,55,0.2)]">
-                SHOP NOW
+            <Link href="/cart" onClick={() => onOpenChange(false)}>
+              <Button className="w-full h-16 bg-[#D4AF37] text-black font-bold text-lg tracking-[0.2em] rounded-2xl hover:bg-white transition-all shadow-[0_10px_30px_rgba(212,175,55,0.2)] flex items-center gap-3">
+                <ShoppingCart size={22} />
+                {mounted && cartCount > 0 ? `CART (${cartCount})` : "VIEW CART"}
               </Button>
             </Link>
           </div>
