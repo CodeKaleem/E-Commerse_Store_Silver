@@ -10,9 +10,9 @@ export const EDGE_GUARD = 2_000_000;
 export const COL_BUFFER = 2;
 export const ROW_BUFFER = 2;
 
-export const WHEEL_SPEED = 0.4;
-export const TOUCH_SPEED = 0.5;
-export const CLAMP_MAX_DELTA = 60;
+export const WHEEL_SPEED = 0.8;
+export const TOUCH_SPEED = 1.5;
+export const CLAMP_MAX_DELTA = 120;
 export const EASE_K = 0.18;
 export const STOP_EPS = 0.1;
 

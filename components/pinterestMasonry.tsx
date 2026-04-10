@@ -16,14 +16,6 @@ import {
 import { baseCardData } from "@/lib/pinboard/data";
 import { supabase } from "@/lib/supabase";
 
-// Layout constants optimized for jewelry display
-const TILE_W = 280;
-const TILE_H = 340; 
-const GAP_X = 20;
-const GAP_Y = 20;
-const COLUMN_WIDTH = TILE_W;
-const STRIDE_X = COLUMN_WIDTH + GAP_X;
-
 function bucketize<T>(items: T[], columns: number): T[][] {
   const cols: T[][] = Array.from({ length: columns }, () => []);
   items.forEach((item, i) => cols[i % columns].push(item));
@@ -43,16 +35,25 @@ export default function PinterestMasonry() {
 
   const { w: vw, h: vh } = useViewport(scrollerRef);
 
+  // Dynamic Layout constants optimized for jewelry display
+  const isMobile = vw > 0 && vw < 640;
+  const TILE_W = isMobile ? 160 : 280;
+  const TILE_H = isMobile ? 220 : 340; 
+  const GAP_X = isMobile ? 12 : 20;
+  const GAP_Y = isMobile ? 12 : 20;
+  const COLUMN_WIDTH = TILE_W;
+  const STRIDE_X = COLUMN_WIDTH + GAP_X;
+
   // REAL columns based on viewport
   const [realCols, setRealCols] = useState(4);
   useEffect(() => {
     const w = scrollerRef.current?.clientWidth ?? vw;
     if (!w) return;
     
-    // Allow 1 column on small mobile, cap at 8 on large screens
+    // Allow 2 columns on small mobile, cap at 8 on large screens
     let calculatedCols = Math.floor((w + GAP_X) / STRIDE_X);
     if (w < 480) {
-      calculatedCols = Math.max(1, calculatedCols);
+      calculatedCols = Math.max(2, calculatedCols);
     } else {
       calculatedCols = Math.max(2, calculatedCols);
     }
@@ -132,7 +133,7 @@ export default function PinterestMasonry() {
   const columnOffsets = useMemo(() => {
     const unit = Math.round(TILE_H / 3);
     return Array.from({ length: columns }, (_, k) => (k % 3) * unit);
-  }, [columns]);
+  }, [columns, TILE_H]);
 
   const firstCol = Math.floor(virtualX / STRIDE_X) - COL_BUFFER;
   const visColCount = Math.ceil(vw / STRIDE_X) + COL_BUFFER * 2;
