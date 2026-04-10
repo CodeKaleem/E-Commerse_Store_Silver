@@ -122,39 +122,31 @@
     /* Premium solid dark background for luxury brand */
     background: #000000;
   }
-/* 
-  html, body, #__next { height: 100%; }
-  body { overflow: hidden; }  */
-
-  /* Optimized scrollbar styling */
+  /* Luxury Scrollbar - Gold Theme */
   ::-webkit-scrollbar {
-    width: 0; /* Reduced from 12px */
-    height: 0;
+    width: 6px;
+    height: 6px;
   }
 
   ::-webkit-scrollbar-track {
-    background: rgba(10, 114, 189, 0.05); /* Reduced opacity */
-    border-radius: 5px;
+    background: #000000;
   }
 
   ::-webkit-scrollbar-thumb {
-    background: rgba(10, 114, 189, 0.5); /* Reduced opacity */
-    border-radius: 5px;
-    border: 1px solid transparent; /* Reduced border */
-    background-clip: content-box;
+    background: #D4AF37;
+    border-radius: 10px;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: rgba(10, 114, 189, 0.7);
+    background: #b8962e;
     background-clip: content-box;
   }
 
   ::-webkit-scrollbar-corner {
-    background: rgba(10, 114, 189, 0.05);
+    background: #000000;
   }
 
-  /* Ensure horizontal scrollbar is always visible */
   ::-webkit-scrollbar:horizontal {
-    height: 0;
+    height: 6px;
   }
 }

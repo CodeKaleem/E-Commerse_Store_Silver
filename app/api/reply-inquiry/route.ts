@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
-import { supabase } from "@/lib/supabase";
+import { createClient } from "@/lib/supabase/server";
 
 const resend = new Resend(process.env.RESEND_API_KEY || "YOUR_API_KEY");
 
@@ -31,7 +31,8 @@ export async function POST(req: Request) {
        console.warn("No RESEND_API_KEY. Simulated send.");
     }
 
-    // Update DB
+    // Update DB using server-side Supabase client (session/RLS aware)
+    const supabase = await createClient();
     const { error: dbError } = await supabase
       .from("service_inquiries")
       .update({ status: "replied" })
